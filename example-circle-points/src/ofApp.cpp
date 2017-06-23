@@ -11,10 +11,10 @@ void ofApp::setup(){
     gui.add(amplitude.setup("amplitude", 1.162, 1.0, 8.90));
     gui.add(frequence.setup("frequence", 5, 1, 50));
     gui.add(tot_points.setup("tot_points", 200, 10, 400));
-	gui.add(diffuseColor.setup("diffuse color", ofColor(13, 97, 244), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(emissiveColor.setup("emissive color", ofColor(100, 141, 19), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(lightColor.setup("light color", ofColor(255, 62, 161), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(bgColor.setup("bg color", ofColor(214, 140, 109), ofColor(0, 0), ofColor(255, 255)));
+	gui.add(diffuseColor.setup("diffuse color", ofColor(97, 217, 49), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(emissiveColor.setup("emissive color", ofColor(213, 31, 19), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(lightColor.setup("light color", ofColor(83, 255, 161), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(bgColor.setup("bg color", ofColor(59, 52, 255), ofColor(0, 0), ofColor(255, 255)));
 
     radius.addListener(this, &ofApp::radiusChanged);
     resolution.addListener(this, &ofApp::resolutionChanged);
@@ -66,11 +66,10 @@ void ofApp::draw(){
     ofEnableDepthTest();
     cam.begin();
     light.draw();
-    ofSetColor(0,0,0,100);
     mat.begin();
-    tube.draw();
-    //tube.drawWireframe();
-    //tube.drawNormals(5);
+    //tube.draw();
+    tube.drawWireframe();
+    tube.drawNormals(abs(sin(ofGetElapsedTimef())* 16));
     mat.end();
 
     cam.end();
