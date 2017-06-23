@@ -9,3 +9,7 @@ This openFrameworks addon can be used to compose geometries that are made out of
 *example-branch*
 
 ![example-branch](img/example-branch.png)
+
+*example-circle-points*
+
+![example-circle-points](img/example-circle-points.png)
