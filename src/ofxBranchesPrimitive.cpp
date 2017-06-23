@@ -30,17 +30,16 @@ void ofxBranchesPrimitive::setup(ofxBranchesPrimitiveOptions _options){
 };
 
 void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
-    if (branches.size() == 0 && !start_point_added) {
+    if(branches.size()==0 && startingPoints.size() < 2){
+        startingPoints.push_back(_vert);
+    } else if (branches.size() == 0 && startingPoints.size() == 2) {
         //you need at least 2 points to make a branch
-        startPoint = _vert;
-        start_point_added = true;
-    } else if (branches.size() == 0 && start_point_added) {
-        //add the first branch
         glm::quat orientation;
-        //glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);//this is the up direction
-        glm::vec3 direction = glm::vec3(0.0f, 1.0f, 0.0f);
-        //auto orientation = rotationBetweenVectors(up, direction);
-        shared_ptr<ofxBranch> branch(new ofxBranch(startPoint, _vert, orientation, direction));
+        glm::vec4 startPoint = startingPoints[0];
+        glm::vec4 endPoint = startingPoints[1];
+        //glm::vec3 direction = glm::normalize(glm::vec3(endPoint - startPoint));
+        glm::vec3 direction = glm::vec3(0.0f,1.0f,0.0);
+        shared_ptr<ofxBranch> branch(new ofxBranch(startPoint, endPoint, orientation, direction));
         branches.push_back(branch);
     } else {
         // each branch has an initial orientation
@@ -100,6 +99,7 @@ void ofxBranchesPrimitive::build(){
 }
 
 void ofxBranchesPrimitive::clear(){
+    startingPoints.clear();
     clearMesh();
     branches.clear();
 };

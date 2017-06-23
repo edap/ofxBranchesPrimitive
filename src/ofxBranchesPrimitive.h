@@ -41,7 +41,6 @@ private:
     const float getRadiusDecrease() const { return options.radiusDecrease; };
     const bool getCap()             const { return options.cap; };
     const int getTextureRepeat()    const { return options.textureRepeat; };
-    glm::vec4 startPoint;
-    bool start_point_added = false;
+    vector<glm::vec4> startingPoints;
     ofVboMesh mesh;
 };
