@@ -9,8 +9,8 @@
 #include "ofxBranchCylinder.h"
 static const ofxBranchCylinderOptions defaultOptions = {
     false,
-    5,
-    5,
+    5.0,
+    5.0,
     16,
     1
 };

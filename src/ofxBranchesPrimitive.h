@@ -14,7 +14,7 @@
 
 struct ofxBranchesPrimitiveOptions{
     bool cap;
-    int radius;
+    float radius;
     int resolution;
     int textureRepeat;
     float radiusDecrease;
@@ -29,6 +29,10 @@ public:
     void addVertex(glm::vec4 vert);
     vector<shared_ptr<ofxBranch>> branches;
     void build();
+    void clear();
+    void clearMesh();
+    void rebuildMesh();
+    glm::quat rotationBetweenVectors(glm::vec3 start, glm::vec3 dest);
 
 private:
     ofxBranchesPrimitiveOptions options;
@@ -39,6 +43,5 @@ private:
     const int getTextureRepeat()    const { return options.textureRepeat; };
     glm::vec4 startPoint;
     bool start_point_added = false;
-    float radius = 5.0;
     ofVboMesh mesh;
 };
