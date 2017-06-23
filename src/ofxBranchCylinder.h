@@ -4,5 +4,6 @@
 #include "ofxBranch.h"
 
 class ofxBranchCylinder{
-    static void putIntoMesh(ofxBranch branch, ofMesh& mesh);
+public:
+    static void putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh);
 };

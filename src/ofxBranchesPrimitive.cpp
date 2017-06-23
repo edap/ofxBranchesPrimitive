@@ -24,14 +24,11 @@ void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
         ofxBranch branch = ofxBranch(startPoint, _vert, orientation, direction);
         branches.push_back(branch);
     } else {
-        // questa e' la rotazione iniziale che ogni branch contiene
+        // each branch has an initial orientation
         glm::quat startOrientation = branches.back().getEndOrientation();
         glm::vec3 startDirection = branches.back().getEndDirection();
         glm::vec4 startPoint = branches.back().getStartPos();
 
-        //glm::vec3 direction = glm::normalize(glm::vec3(endPoint - startPoint));
-
-        //glm::vec4 endPos = startPos+ glm::vec4((length * dir), 1.0);
         ofxBranch branch = ofxBranch(startPoint, _vert, startOrientation, startDirection);
         branches.push_back(branch);
         putIntoMesh(branch, this->mesh);

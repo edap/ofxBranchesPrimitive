@@ -8,12 +8,13 @@
 
 #include "ofxBranchCylinder.h"
 
-void ofxBranchCylinder::putIntoMesh(ofxBranch branch, ofMesh& mesh){
-    glm::vec4 startPos = branch.getStartPos();
-    glm::vec4 endPos = branch.getEndPos();
-    glm::quat startOrientation = branch.getStartOrientation();
-    glm::quat endOrientation = branch.getEndOrientation();
-    glm::vec3 direction = branch.getStartDirection();
+void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh){
+    glm::vec4 startPos = branch->
+    getStartPos();
+    glm::vec4 endPos = branch->getEndPos();
+    glm::quat startOrientation = branch->getStartOrientation();
+    glm::quat endOrientation = branch->getEndOrientation();
+    glm::vec3 direction = branch->getStartDirection();
     //cout << startPos.y << endl;
 
     bool cap = false;
