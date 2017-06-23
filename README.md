@@ -13,22 +13,21 @@ The desired geometry for each branch can be specified when merging the branches 
 ofxBranchesPrimitive tube;
 
 void ofApp::setup(){
-	int tot_points = 200;
-	for (int i = 0; i <= tot_points; i++) {
-		int radius = 40;
-		//the circle, this is the element that will be moved
-		float theta = 2.0f * 3.1415926f * float(i) / float(tot_points-1);
-		float x = radius * cosf(theta);
-		float z = radius * sinf(theta);
-		point.x = x;
-		point.z = z;
-		tube.addVertex(point);
-	}
-	tube.build();
+    int tot_points = 200;
+    for (int i = 0; i <= tot_points; i++) {
+      int radius = 40;
+      float theta = 2.0f * 3.1415926f * float(i) / float(tot_points-1);
+      float x = radius * cosf(theta);
+      float z = radius * sinf(theta);
+      point.x = x;
+      point.z = z;
+      tube.addVertex(point);
+    }
+    tube.build();
 }
 
 void ofApp::draw(){
-  tube.draw();
+    tube.draw();
 }
 ```
 
