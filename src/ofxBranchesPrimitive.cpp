@@ -1,6 +1,6 @@
 //
 //  ofxBranchesPrimitive.cpp
-//  testSpline
+//  
 //
 //  Created by DavidePrati on 23/06/17.
 //
@@ -8,9 +8,26 @@
 
 #include "ofxBranchesPrimitive.h"
 
-ofxBranchesPrimitive::ofxBranchesPrimitive(){
+static const ofxBranchesPrimitiveOptions defaultOptions = {
+    16,  // resolution
+    1,  // textureRepeat
+    5,  //radius
+    1.0, //radiusDecrease
+    false // cap
+};
 
+ofxBranchesPrimitive::ofxBranchesPrimitive(){
+    setup(defaultOptions);
 }
+
+ofxBranchesPrimitive::ofxBranchesPrimitive(ofxBranchesPrimitiveOptions options){
+    setup(options);
+}
+
+void ofxBranchesPrimitive::setup(ofxBranchesPrimitiveOptions options){
+    mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    options = options;
+};
 
 void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
     if (branches.size() == 0 && !start_point_added) {
@@ -27,13 +44,24 @@ void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
         // each branch has an initial orientation
         glm::quat startOrientation = branches.back()->getEndOrientation();
         glm::vec3 startDirection = branches.back()->getEndDirection();
-        glm::vec4 startPoint = branches.back()->getStartPos();
-        shared_ptr<ofxBranch> branch(new ofxBranch(startPoint, _vert, startOrientation, startDirection));
+        glm::vec4 startPos = branches.back()->getEndPos();
+        shared_ptr<ofxBranch> branch(new ofxBranch(startPos, _vert, startOrientation, startDirection));
         branches.push_back(branch);
         ofxBranchCylinder::putIntoMesh(branch, this->mesh);
     }
 }
 
-void ofxBranchesPrimitive::setRadius(float _radius){
-    radius = _radius;
+void ofxBranchesPrimitive::build(){
+    getMesh().clear();
+    getMesh().append(mesh);
+    getMesh().enableNormals();
+}
+
+void ofxBranchesPrimitive::drawDebug(float normalLength){
+    drawWireframe();
+    drawNormals(normalLength);
+    drawNormals(5);
+//    for(auto b:branches){
+//        ofDrawSphere(b->getEndPos().x, b->getEndPos().y, b->getEndPos().z, 2);
+//    }
 }
