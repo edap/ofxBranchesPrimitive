@@ -9,6 +9,7 @@
 
 #include "ofMain.h"
 #include "ofxBranch.h"
+#include "ofxBranchCylinder.h"
 #include "of3dPrimitives.h"
 
 class ofxBranchesPrimitive : public of3dPrimitive {
@@ -16,9 +17,8 @@ class ofxBranchesPrimitive : public of3dPrimitive {
 public:
     ofxBranchesPrimitive();
     void addVertex(glm::vec4 vert);
-    void putIntoMesh(ofxBranch branch, ofMesh& mesh);
     void setRadius(float r);
-    vector<ofxBranch> branches;
+    vector<shared_ptr<ofxBranch>> branches;
     void drawDebug();
 
 private:
