@@ -4,9 +4,9 @@
 #include "ofxBranch.h"
 
 struct ofxBranchCylinderOptions{
-    float radiusTop;
-    float radiusBottom;
     bool cap;
+    float radiusBottom;
+    float radiusTop;
     int resolution;
     int textureRepeat;
 };
@@ -15,4 +15,7 @@ class ofxBranchCylinder{
 public:
     static void putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh);
     static void putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranchCylinderOptions options);
+
+private:
+    static void add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranchCylinderOptions options);
 };

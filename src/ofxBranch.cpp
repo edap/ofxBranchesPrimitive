@@ -1,17 +1,7 @@
 #include "ofxBranch.h"
 
-static const ofxBranchOptions defaultOptions = {
-    4.0,  // radiusTop
-    4.0,  // radiusBottom
-    false // cap
-};
-
-void ofxBranch::setup(ofxBranchOptions opt){
-    options = opt;
-};
 
 ofxBranch::ofxBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientation, glm::vec3 _startDir){
-    setup(defaultOptions);
     startPos = _startPos;
     startDirection = _startDir;
     endPos = _endPos;
@@ -21,16 +11,6 @@ ofxBranch::ofxBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientat
     endOrientation = calculateEndOrientation(_startDir, endDirection);
 };
 
-ofxBranch::ofxBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientation, glm::vec3 _startDir, ofxBranchOptions opt){
-    setup(opt);
-    startPos = _startPos;
-    startDirection = _startDir;
-    endPos = _endPos;
-    startOrientation = _orientation;
-
-    endDirection = calculateEndDirection(_startPos, _endPos);
-    endOrientation = calculateEndOrientation(_startDir, endDirection);
-};
 
 glm::quat ofxBranch::calculateEndOrientation(glm::vec3 startDirection, glm::vec3 endDirection){
     glm::quat topRotation = rotationBetweenVectors(startDirection, endDirection);

@@ -7,8 +7,23 @@
 //
 
 #include "ofxBranchCylinder.h"
+static const ofxBranchCylinderOptions defaultOptions = {
+    false,
+    5,
+    5,
+    16,
+    1
+};
 
 void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh){
+    add(branch, mesh, defaultOptions);
+}
+
+void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranchCylinderOptions opt){
+    add(branch, mesh, opt);
+}
+
+void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranchCylinderOptions opt){
     glm::vec4 startPos = branch->
     getStartPos();
     glm::vec4 endPos = branch->getEndPos();
@@ -17,12 +32,12 @@ void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh){
     glm::vec3 direction = branch->getStartDirection();
     //cout << startPos.y << endl;
 
-    bool cap = false;
-    int resolution = 32;
-    int textureRepeat = 1;
+    bool cap = opt.cap;
+    int resolution = opt.resolution;
+    int textureRepeat = opt.textureRepeat;
     float length = glm::distance(startPos, endPos);
-    const int radius = 2;
-    const int scaledRadius = 2;//for now, do not scale the branches;
+    const int radius = opt.radiusBottom;
+    const int scaledRadius = opt.radiusTop;//for now, do not scale the branches;
 
     // these variables are used to do not stretch the texture
     float circumferenceBottom = radius * 3.1415926f;
@@ -96,4 +111,6 @@ void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh){
         mesh.addTexCoord(tcoord);
     }
 }
+
+
 

@@ -9,11 +9,11 @@
 #include "ofxBranchesPrimitive.h"
 
 static const ofxBranchesPrimitiveOptions defaultOptions = {
-    16,  // resolution
-    1,  // textureRepeat
-    5,  //radius
-    1.0, //radiusDecrease
-    false // cap
+    false, // cap
+    5,     // radius
+    16,    // resolution
+    1,     // textureRepeat
+    1.0    // radiusDecrease
 };
 
 ofxBranchesPrimitive::ofxBranchesPrimitive(){
@@ -37,7 +37,7 @@ void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
     } else if (branches.size() == 0 && start_point_added) {
         //add the first branch
         glm::quat orientation;
-        glm::vec3 direction = glm::normalize(glm::vec3(_vert - startPoint));
+        glm::vec3 direction = glm::vec3(0.0f, 1.0f, 0.0f);//this is the up direction
         shared_ptr<ofxBranch> branch(new ofxBranch(startPoint, _vert, orientation, direction));
         branches.push_back(branch);
     } else {

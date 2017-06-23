@@ -13,11 +13,11 @@
 #include "of3dPrimitives.h"
 
 struct ofxBranchesPrimitiveOptions{
+    bool cap;
+    int radius;
     int resolution;
     int textureRepeat;
-    int radius;
     float radiusDecrease;
-    bool cap;
 };
 
 class ofxBranchesPrimitive : public of3dPrimitive {
@@ -29,7 +29,6 @@ public:
     void addVertex(glm::vec4 vert);
     vector<shared_ptr<ofxBranch>> branches;
     void build();
-    void drawDebug(float normalLength = 4.0);
 
 private:
     ofxBranchesPrimitiveOptions options;
