@@ -24,13 +24,12 @@ void ofxBranchCylinder::putIntoMesh(shared_ptr<ofxBranch> branch, ofMesh& mesh, 
 }
 
 void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranchCylinderOptions opt){
-    glm::vec4 startPos = branch->
-    getStartPos();
+    glm::vec4 startPos = branch->getStartPos();
     glm::vec4 endPos = branch->getEndPos();
     glm::quat startOrientation = branch->getStartOrientation();
     glm::quat endOrientation = branch->getEndOrientation();
     glm::vec3 direction = branch->getStartDirection();
-    //cout << startPos.y << endl;
+    glm::vec3 endDirection = branch->getEndDirection();
 
     bool cap = opt.cap;
     int resolution = opt.resolution;
@@ -83,7 +82,7 @@ void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranc
         float x = radius * cosf(theta);
         float z = radius * sinf(theta);
         glm::vec4 circleCenter = glm::vec4(0.0f, 0.0f, 0.0f,1.0);
-        glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f); // it is a vec4 because
+        glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f);
         glm::vec4 circleBottom = tranMatBottom * rotMatBottom * circle;
         glm::vec4 circleTop = tranMatTop * rotMatTop * circle;
         glm::vec4 normalTop = glm::normalize(
@@ -109,6 +108,42 @@ void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranc
         mesh.addVertex(glm::vec3(circleTop));
         mesh.addNormal(glm::vec3(normalTop));
         mesh.addTexCoord(tcoord);
+    }
+
+    // Cylinder cap
+    if (cap) {
+        int topMiddlePoint = mesh.getNumVertices();
+        glm::vec3 topDir = endDirection;
+
+        mesh.addVertex(glm::vec3(endPos));
+        mesh.addNormal(topDir);
+        mesh.addTexCoord(glm::vec2(wrapLimitCap/2,wrapLimitCap/2));
+
+        for (int i = 0; i <= resolution; i++) {
+            if (i == resolution) {
+                //closing triangle
+                mesh.addIndex(topMiddlePoint);
+                mesh.addIndex(topMiddlePoint+ i + 1);
+                mesh.addIndex(topMiddlePoint+1);
+            } else {
+                //indices
+                mesh.addIndex(topMiddlePoint);
+                mesh.addIndex(topMiddlePoint+ i + 1);
+                mesh.addIndex(topMiddlePoint+ i + 2);
+            }
+
+            float theta = 2.0f * 3.1415926f * float(i) / float(resolution);
+            float x = scaledRadius * cosf(theta);
+            float z = scaledRadius * sinf(theta);
+            glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f);
+            glm::vec4 circleTop = tranMatTop * rotMatTop * circle;
+            glm::vec2 capTcoord;
+            capTcoord.x = ofMap(x, -scaledRadius, scaledRadius, 0.f, wrapLimitCap);
+            capTcoord.y = ofMap(z, -scaledRadius, scaledRadius, 0.f, wrapLimitCap);
+            mesh.addVertex(glm::vec3(circleTop));
+            mesh.addNormal(topDir);
+            mesh.addTexCoord(capTcoord);
+        }
     }
 }
 
