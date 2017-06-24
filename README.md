@@ -31,6 +31,22 @@ void ofApp::draw(){
 }
 ```
 
+### Options
+
+By default, an `ofxBranchesPrimitive` uses a tubular geometry and it is initialized with these options:
+
+```cpp
+static const ofxBranchesPrimitiveOptions defaultOptions = {
+    false, // cap, if the upper part of the cylinder composing a branch is closed or not
+    5.0,   // radius, it defines how large is the branch
+    16,    // resolution, it defines how many faces the cylinder will have. The minimum number is 3
+    1,     // textureRepeat, it defines how many times a texture will repeat
+    1.0    // radiusScale, it defines how much the radius of a branch should scale compared to the previous one
+};
+```
+
+You can create you can pass your options during the initialization of the object or using the `setup(ofxBranchesPrimitiveOptions opt)` method. Have a look at the `example-scaled` application for more details about how to pass these options.
+
 ### Examples
 
 *example-branch*
@@ -41,3 +57,7 @@ void ofApp::draw(){
 
 ![example-circle-points](img/example-circle-points2.png)
 ![example-circle-points](img/example-circle-points.png)
+
+*example-scaled*
+![example-scaled](img/example-scaled.png)
+
