@@ -2,7 +2,7 @@
 [![Build status](https://travis-ci.org/edap/ofxBranchesPrimitive.svg?branch=master)](https://travis-ci.org/edap/ofxBranchesPrimitive)
 [![Build status](https://ci.appveyor.com/api/projects/status/ksje98gfpdn5knu9?svg=true)](https://ci.appveyor.com/project/edap/ofxbranchesprimitive)
 
-This openFrameworks addon can be used to compose geometries that are made out of branches. As "branch" I mean a data structure defined by a starting point and an end point, a quaternion that define the current orientation and a direction.
+This openFrameworks addon can be used to compose geometries that are made out of branches. As "branch" I mean a class that is initialized with a starting point and an end point, a quaternion that defines the initial orientation and an initial direction.
 
 The desired geometry for each branch can be specified when merging the branches into the mesh. By default, this addon comes with a cylindric geometry that can be used to create tubular structures, as in the `example-circle-points` app. If you want to create your own geometry for the branches, have a look at the `example-branch` application, find the `ofxBranchCylinder::putIntoMesh` method and substitute it with your custom one.
 

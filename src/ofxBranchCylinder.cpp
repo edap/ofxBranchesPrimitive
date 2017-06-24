@@ -81,12 +81,15 @@ void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranc
         float theta = 2.0f * 3.1415926f * float(i) / float(resolution);
         float x = radius * cosf(theta);
         float z = radius * sinf(theta);
+        float x_scaled = scaledRadius * cosf(theta);
+        float z_scaled = scaledRadius * sinf(theta);
         glm::vec4 circleCenter = glm::vec4(0.0f, 0.0f, 0.0f,1.0);
         glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f);
+        glm::vec4 circle_scaled = glm::vec4(x_scaled, 0.0f, z_scaled, 1.0f);
         glm::vec4 circleBottom = tranMatBottom * rotMatBottom * circle;
-        glm::vec4 circleTop = tranMatTop * rotMatTop * circle;
+        glm::vec4 circleTop = tranMatTop * rotMatTop * circle_scaled;
         glm::vec4 normalTop = glm::normalize(
-                                             (rotMatTop * circle ) -
+                                             (rotMatTop * circle_scaled ) -
                                              (rotMatTop * circleCenter)
                                              );
         glm::vec4 normalBottom = glm::normalize(
