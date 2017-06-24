@@ -35,8 +35,15 @@ void ofxBranchCylinder::add(shared_ptr<ofxBranch> branch, ofMesh& mesh, ofxBranc
     int resolution = opt.resolution;
     int textureRepeat = opt.textureRepeat;
     float length = glm::distance(startPos, endPos);
-    const int radius = opt.radiusBottom;
-    const int scaledRadius = opt.radiusTop;//for now, do not scale the branches;
+    float radius = opt.radiusBottom;
+    float scaledRadius;
+    if(opt.radiusTop <= 0.03){
+        scaledRadius = 0.03;
+    }else{
+        scaledRadius = opt.radiusTop;
+    }
+
+    //const int scaledRadius = opt.radiusTop;//for now, do not scale the branches;
 
     // these variables are used to do not stretch the texture
     float circumferenceBottom = radius * 3.1415926f;

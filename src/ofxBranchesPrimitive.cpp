@@ -10,10 +10,10 @@
 
 static const ofxBranchesPrimitiveOptions defaultOptions = {
     false, // cap
-    5.0,     // radius
+    5.0,   // radius
     16,    // resolution
     1,     // textureRepeat
-    1.0    // radiusDecrease
+    1.0    // radiusScale
 };
 
 ofxBranchesPrimitive::ofxBranchesPrimitive(){
@@ -48,12 +48,6 @@ void ofxBranchesPrimitive::addVertex(glm::vec4 _vert){
         glm::vec4 startPos = branches.back()->getEndPos();
         shared_ptr<ofxBranch> branch(new ofxBranch(startPos, _vert, startOrientation, startDirection));
         branches.push_back(branch);
-        float radiusBottom = options.radius;
-        float radiusTop = options.radius * options.radiusDecrease;
-        auto opt = ofxBranchCylinderOptions(
-            { options.cap, radiusBottom, radiusTop, options.resolution, options.textureRepeat}
-        );
-        ofxBranchCylinder::putIntoMesh(branch, this->mesh, opt);
     }
 }
 
@@ -107,14 +101,13 @@ void ofxBranchesPrimitive::build(){
     float startingRadius = this->getRadius();
     float endingRadius;
     for(auto branch:branches){
-        float endingRadius = startingRadius * this->getRadiusDecrease();
+        float endingRadius = startingRadius * this->getRadiusScale();
         auto opt = ofxBranchCylinderOptions({ this->getCap(),
                                               startingRadius,
                                               endingRadius,
                                               this->getResolution(),
                                               this->getTextureRepeat() });
         ofxBranchCylinder::putIntoMesh(branch, this->mesh, opt);
-        cout << endingRadius << endl;
         startingRadius = endingRadius;
     }
     getMesh().append(mesh);

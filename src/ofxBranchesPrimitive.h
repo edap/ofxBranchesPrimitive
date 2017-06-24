@@ -17,7 +17,7 @@ struct ofxBranchesPrimitiveOptions{
     float radius;
     int resolution;
     int textureRepeat;
-    float radiusDecrease;
+    float radiusScale;
 };
 
 class ofxBranchesPrimitive : public of3dPrimitive {
@@ -37,8 +37,8 @@ public:
 private:
     ofxBranchesPrimitiveOptions options;
     const float getRadius()         const { return options.radius; };
-    const float getResolution()     const { return options.resolution; };
-    const float getRadiusDecrease() const { return options.radiusDecrease; };
+    const int getResolution()       const { return options.resolution; };
+    const float getRadiusScale()    const { return options.radiusScale; };
     const bool getCap()             const { return options.cap; };
     const int getTextureRepeat()    const { return options.textureRepeat; };
     vector<glm::vec4> startingPoints;
