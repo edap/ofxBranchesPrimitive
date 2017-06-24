@@ -91,13 +91,6 @@ glm::quat ofxBranchesPrimitive::rotationBetweenVectors(glm::vec3 start, glm::vec
     
 }
 
-void ofxBranchesPrimitive::build(){
-    getMesh().clear();
-    getMesh().append(mesh);
-    getMesh().enableNormals();
-    mesh.clear();
-}
-
 void ofxBranchesPrimitive::clear(){
     startingPoints.clear();
     clearMesh();
@@ -109,15 +102,20 @@ void ofxBranchesPrimitive::clearMesh(){
     getMesh().clear();
 };
 
-void ofxBranchesPrimitive::rebuildMesh(){
+void ofxBranchesPrimitive::build(){
     clearMesh();
+    float startingRadius = this->getRadius();
+    float endingRadius;
     for(auto branch:branches){
-        float radiusBottom = options.radius;
-        float radiusTop = options.radius * options.radiusDecrease;
-        auto opt = ofxBranchCylinderOptions(
-                                            { options.cap, radiusBottom, radiusTop, options.resolution, options.textureRepeat}
-                                            );
+        float endingRadius = startingRadius * this->getRadiusDecrease();
+        auto opt = ofxBranchCylinderOptions({ this->getCap(),
+                                              startingRadius,
+                                              endingRadius,
+                                              this->getResolution(),
+                                              this->getTextureRepeat() });
         ofxBranchCylinder::putIntoMesh(branch, this->mesh, opt);
+        cout << endingRadius << endl;
+        startingRadius = endingRadius;
     }
     getMesh().append(mesh);
     getMesh().enableNormals();

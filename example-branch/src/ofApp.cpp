@@ -15,7 +15,7 @@ void ofApp::setup(){
     mat.setDiffuseColor(ofFloatColor::purple);
     mat.setEmissiveColor(ofFloatColor::blue);
 
-    int n_branches = 3;
+    int n_branches = 80;
     glm::vec4 startPoint = glm::vec4(-200.0f,0.0f,0.0f, 1.0);
     glm::vec4 endPoint = glm::vec4(-200.0f,0.0f,0.0f, 1.0);
     glm::quat orientation;

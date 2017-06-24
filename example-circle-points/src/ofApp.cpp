@@ -115,24 +115,24 @@ void ofApp::resolutionChanged(int &resolution){
 void ofApp::amplitudeChanged(float & amplitude){
     tube.clear();
     addPoints(amplitude, frequence, tot_points);
-    tube.rebuildMesh();
+    tube.build();
 };
 
 void ofApp::frequenceChanged(int & frequence){
     tube.clear();
     addPoints(amplitude, frequence, tot_points);
-    tube.rebuildMesh();
+    tube.build();
 };
 
 void ofApp::totPointsChanged(int & tot_points){
     tube.clear();
     addPoints(amplitude, frequence, tot_points);
-    tube.rebuildMesh();
+    tube.build();
 };
 
 void ofApp::rebuild(ofxBranchesPrimitiveOptions opt){
     tube.setup(opt);
-    tube.rebuildMesh();
+    tube.build();
 }
 
 //--------------------------------------------------------------
