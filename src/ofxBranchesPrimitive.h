@@ -35,12 +35,12 @@ public:
     glm::quat rotationBetweenVectors(glm::vec3 start, glm::vec3 dest);
 
 private:
-    ofxBranchesPrimitiveOptions options;
+    ofxBranchesPrimitiveOptions     options;
     const float getRadius()         const { return options.radius; };
     const int getResolution()       const { return options.resolution; };
     const float getRadiusScale()    const { return options.radiusScale; };
     const bool getCap()             const { return options.cap; };
     const int getTextureRepeat()    const { return options.textureRepeat; };
-    vector<glm::vec4> startingPoints;
-    ofVboMesh mesh;
+    vector<glm::vec4>               startingPoints;
+    ofVboMesh                       mesh;
 };
