@@ -32,7 +32,6 @@ public:
     void clear();
     void clearMesh();
     void rebuildMesh();
-    glm::quat rotationBetweenVectors(glm::vec3 start, glm::vec3 dest);
 
 private:
     ofxBranchesPrimitiveOptions     options;
