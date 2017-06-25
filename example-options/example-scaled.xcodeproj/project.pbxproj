@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
-		32E4FBA93321B444BC80D82B /* ofxBranchCylinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B5DA2489BDB6DC0B3D053DA /* ofxBranchCylinder.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88333E71C9457E441C33474 /* ofxButton.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
@@ -54,7 +53,6 @@
 
 /* Begin PBXFileReference section */
 		0A1DAC09F322AE313A40706D /* ofxToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxToggle.h; path = ../../../addons/ofxGui/src/ofxToggle.h; sourceTree = SOURCE_ROOT; };
-		0B5DA2489BDB6DC0B3D053DA /* ofxBranchCylinder.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBranchCylinder.cpp; path = ../../../addons/ofxBranchesPrimitive/src/ofxBranchCylinder.cpp; sourceTree = SOURCE_ROOT; };
 		15F2C6477A769C03A56D1401 /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSlider.cpp; path = ../../../addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
 		17E65988300FBD9AAA2CD0CA /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = ../../../addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
 		1C0DA2561397A7DE0246858B /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../../addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
@@ -103,7 +101,6 @@
 			children = (
 				F7EFC024A62DBFE33ACC87E6 /* ofxBranch.cpp */,
 				39656E26E41578F1CCAF58EC /* ofxBranch.h */,
-				0B5DA2489BDB6DC0B3D053DA /* ofxBranchCylinder.cpp */,
 				A470AB7CA4429342FE517CAF /* ofxBranchCylinder.h */,
 				49AFE364A5C9FF0EE67CDEEA /* ofxBranchesPrimitive.cpp */,
 				DFA17909A3A69A1C4E7C7E52 /* ofxBranchesPrimitive.h */,
@@ -311,7 +308,6 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				A62F3EE0B6D7B2EC9CE74136 /* ofxBranch.cpp in Sources */,
-				32E4FBA93321B444BC80D82B /* ofxBranchCylinder.cpp in Sources */,
 				9CA8994C3B1F341C80E33413 /* ofxBranchesPrimitive.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
