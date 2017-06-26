@@ -55,8 +55,6 @@ private:
             scaledRadius = opt.radiusTop;
         }
 
-        //const int scaledRadius = opt.radiusTop;//for now, do not scale the branches;
-
         // these variables are used to do not stretch the texture
         float circumferenceBottom = radius * 3.1415926f;
         float ratio = circumferenceBottom/length;
