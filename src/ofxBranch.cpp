@@ -11,6 +11,9 @@ ofxBranch::ofxBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientat
     endOrientation = calculateEndOrientation(_startDir, endDirection);
 };
 
+void ofxBranch::setParentByIndex(int parent_index) {
+    this->indexParent = parent_index;
+};
 
 glm::quat ofxBranch::calculateEndOrientation(glm::vec3 startDirection, glm::vec3 endDirection){
     glm::quat topRotation = rotationBetweenVectors(startDirection, endDirection);

@@ -12,6 +12,8 @@ public:
     const glm::quat getEndOrientation()   const { return endOrientation; };
     const glm::vec3 getStartDirection()   const { return startDirection; };
     const glm::vec3 getEndDirection()     const { return endDirection; };
+    const int getIndexParent()            const { return indexParent; };
+    void setParentByIndex(int parent_index);
 
 private:
     glm::vec4 startPos;
@@ -23,4 +25,5 @@ private:
     glm::quat rotationBetweenVectors(glm::vec3 _start, glm::vec3 _dest);
     glm::quat calculateEndOrientation(glm::vec3 _start, glm::vec3 _dest);
     glm::vec3 calculateEndDirection(glm::vec4 _startPos, glm::vec4 _endPos);
+    int indexParent = 0;
 };
