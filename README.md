@@ -14,8 +14,8 @@ ofxBranchesPrimitive tube;
 
 void ofApp::setup(){
     int tot_points = 200;
+    int radius = 40;
     for (int i = 0; i <= tot_points; i++) {
-      int radius = 40;
       float theta = 2.0f * 3.1415926f * float(i) / float(tot_points-1);
       float x = radius * cosf(theta);
       float z = radius * sinf(theta);
