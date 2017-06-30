@@ -40,7 +40,6 @@ private:
         glm::vec4 endPos = branch->getEndPos();
         glm::quat startOrientation = branch->getStartOrientation();
         glm::quat endOrientation = branch->getEndOrientation();
-        glm::vec3 direction = branch->getStartDirection();
         glm::vec3 endDirection = branch->getEndDirection();
 
         bool cap = opt.cap;
