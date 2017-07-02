@@ -41,7 +41,7 @@ private:
         glm::quat startOrientation = branch->getStartOrientation();
         glm::quat endOrientation = branch->getEndOrientation();
         glm::vec3 endDirection = branch->getEndDirection();
-
+        bool addVertexColor = true;//turn on/off vertex colors
         bool cap = opt.cap;
         int resolution = opt.resolution;
         int textureRepeat = opt.textureRepeat;
@@ -69,10 +69,12 @@ private:
         glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos));
 
         // Cylinder body
+
         int first = mesh.getNumVertices();
         for (int i = 0; i <= resolution; i++) {
             // if it is the last face, close it where the first face
             // was started
+
             if (i == resolution) {
                 mesh.addIndex(first+(i*2));
                 mesh.addIndex(first);
@@ -81,6 +83,7 @@ private:
                 mesh.addIndex(first+1);
                 mesh.addIndex(first+(i*2)+1);
                 mesh.addIndex(first+(i*2));
+
             } else {
                 mesh.addIndex(first+(i*2));
                 mesh.addIndex(first+(i*2)+2);
@@ -92,6 +95,8 @@ private:
             }
         }
 
+        ofFloatColor colorTop(ofRandom(1.0f),ofRandom(1.0f), ofRandom(1.0f));
+        ofFloatColor colorBottom(ofRandom(1.0f),ofRandom(1.0f), ofRandom(1.0f));
         for (int i = 0; i <= resolution; i++) {
             //the circle, this is the element that will be moved
             float theta = 2.0f * 3.1415926f * float(i) / float(resolution);
@@ -121,12 +126,19 @@ private:
             mesh.addVertex(glm::vec3(circleBottom));
             mesh.addNormal(glm::vec3(normalBottom));
             mesh.addTexCoord(tcoord);
+            if (addVertexColor) {
+                mesh.addColor(colorBottom);
+            }
+
 
             //top
             tcoord.y = textureRepeat;
             mesh.addVertex(glm::vec3(circleTop));
             mesh.addNormal(glm::vec3(normalTop));
             mesh.addTexCoord(tcoord);
+            if (addVertexColor) {
+                mesh.addColor(colorTop);
+            }
         }
 
         // Cylinder cap
@@ -137,6 +149,9 @@ private:
             mesh.addVertex(glm::vec3(endPos));
             mesh.addNormal(topDir);
             mesh.addTexCoord(glm::vec2(wrapLimitCap/2,wrapLimitCap/2));
+            if (addVertexColor) {
+                mesh.addColor(colorTop);
+            }
 
             for (int i = 0; i <= resolution; i++) {
                 if (i == resolution) {
@@ -162,6 +177,9 @@ private:
                 mesh.addVertex(glm::vec3(circleTop));
                 mesh.addNormal(topDir);
                 mesh.addTexCoord(capTcoord);
+                if (addVertexColor) {
+                    mesh.addColor(colorTop);
+                }
             }
         }
     };
