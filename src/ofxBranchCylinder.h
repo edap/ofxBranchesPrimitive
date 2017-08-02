@@ -9,6 +9,7 @@ struct ofxBranchCylinderOptions{
     float radiusTop;
     int resolution;
     int textureRepeat;
+    float padding;
 };
 
 static const ofxBranchCylinderOptions defaultBranchOptions = {
@@ -16,7 +17,8 @@ static const ofxBranchCylinderOptions defaultBranchOptions = {
     5.0,
     5.0,
     16,
-    1
+    1,
+    0
 };
 
 class ofxBranchCylinder{
@@ -37,7 +39,14 @@ private:
     template <typename BRANCH>
     static void add(shared_ptr<BRANCH> branch, ofMesh& mesh, ofxBranchCylinderOptions opt){
         glm::vec4 startPos = branch->getStartPos();
-        glm::vec4 endPos = branch->getEndPos();
+        glm::vec4 endPos;
+        // add an empty space between the branches, if padding > 0
+        if (opt.padding > 0) {
+            endPos = branch->getEndPos() - glm::vec4((branch->getEndDirection() * opt.padding), 1.0);
+        } else {
+            endPos = branch->getEndPos();
+        }
+
         glm::quat startOrientation = branch->getStartOrientation();
         glm::quat endOrientation = branch->getEndOrientation();
         glm::vec3 endDirection = branch->getEndDirection();
