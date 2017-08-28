@@ -78,7 +78,7 @@ private:
         glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos));
 
         // Cylinder body
-
+        mesh.enableIndices();
         int first = mesh.getNumVertices();
         for (int i = 0; i <= resolution; i++) {
             // if it is the last face, close it where the first face
@@ -138,7 +138,6 @@ private:
             if (addVertexColor) {
                 mesh.addColor(colorBottom);
             }
-
 
             //top
             tcoord.y = textureRepeat;

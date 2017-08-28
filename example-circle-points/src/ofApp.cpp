@@ -6,6 +6,7 @@ void ofApp::setup(){
     gui.setup();
     gui.setPosition(5, 40);
 
+    gui.add(saveMesh.setup("save mesh",false));
     gui.add(radius.setup("radius", 1.0, 1.0, 12.0));
     gui.add(resolution.setup("resolution", 11, 3, 32));
     gui.add(amplitude.setup("amplitude", 1.162, 1.0, 8.90));
@@ -21,6 +22,7 @@ void ofApp::setup(){
     amplitude.addListener(this, &ofApp::amplitudeChanged);
     frequence.addListener(this, &ofApp::frequenceChanged);
     tot_points.addListener(this, &ofApp::totPointsChanged);
+    saveMesh.addListener(this, &ofApp::saveMeshPressed);
 
     light.setup();
     light.setAmbientColor(ofColor(lightColor));
@@ -69,13 +71,19 @@ void ofApp::draw(){
     mat.begin();
     //tube.draw();
     tube.drawWireframe();
-    tube.drawNormals(abs(sin(ofGetElapsedTimef())* 16));
+    //tube.drawNormals(abs(sin(ofGetElapsedTimef())* 16));
+    tube.drawNormals(2, false);
     mat.end();
 
     cam.end();
     ofDisableDepthTest();
 
 
+}
+
+void ofApp::saveMeshPressed(){
+    string randomFilename = ofGetTimestampString() + ".ply";
+    tube.getMesh().save(randomFilename);
 }
 
 void ofApp::maybeDrawGui(){

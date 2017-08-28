@@ -29,6 +29,7 @@ public:
     void amplitudeChanged(float & amplitude);
     void frequenceChanged(int & frequence);
     void totPointsChanged(int & tot_points);
+    void saveMeshPressed();
 
 
     ofxBranchesPrimitive tube;
@@ -37,6 +38,7 @@ public:
     ofLight light;
     bool hideGui = false;
     ofxPanel gui;
+    ofxButton saveMesh;
 
     ofxFloatSlider radius;
     ofxFloatSlider amplitude;
