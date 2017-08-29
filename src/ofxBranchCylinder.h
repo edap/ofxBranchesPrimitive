@@ -78,30 +78,16 @@ private:
         glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos));
 
         // Cylinder body
-        mesh.enableIndices();
+        //mesh.enableIndices();
         int first = mesh.getNumVertices();
-        for (int i = 0; i <= resolution; i++) {
-            // if it is the last face, close it where the first face
-            // was started
+        for (int i = 0; i < resolution; i++) {
+            mesh.addIndex(first+(i*2));
+            mesh.addIndex(first+(i*2)+3);
+            mesh.addIndex(first+(i*2)+2);
 
-            if (i == resolution) {
-                mesh.addIndex(first+(i*2));
-                mesh.addIndex(first);
-                mesh.addIndex(first+1);
-
-                mesh.addIndex(first+1);
-                mesh.addIndex(first+(i*2)+1);
-                mesh.addIndex(first+(i*2));
-
-            } else {
-                mesh.addIndex(first+(i*2));
-                mesh.addIndex(first+(i*2)+2);
-                mesh.addIndex(first+(i*2)+3);
-
-                mesh.addIndex(first+(i*2)+3);
-                mesh.addIndex(first+(i*2)+1);
-                mesh.addIndex(first+(i*2));
-            }
+            mesh.addIndex(first+(i*2));
+            mesh.addIndex(first+(i*2)+1);
+            mesh.addIndex(first+(i*2)+3);
         }
 
         ofFloatColor colorTop(ofRandom(1.0f),ofRandom(1.0f), ofRandom(1.0f));
