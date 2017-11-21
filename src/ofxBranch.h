@@ -13,7 +13,10 @@ public:
     const glm::vec3 getStartDirection()   const { return startDirection; };
     const glm::vec3 getEndDirection()     const { return endDirection; };
     const int getIndexParent()            const { return indexParent; };
+
     void setParentByIndex(int parent_index);
+    const float getLength();
+    void updateBranch(glm::vec4 start, glm::vec4 end, glm::quat orientation, glm::vec3 startDir);
 
 private:
     glm::vec4 startPos;
