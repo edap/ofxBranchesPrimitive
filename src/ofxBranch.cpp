@@ -11,7 +11,7 @@ ofxBranch::ofxBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientat
     endOrientation = calculateEndOrientation(_startDir, endDirection);
 };
 
-void ofxBranch::updateBranch(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientation, glm::vec3 _startDir){
+void ofxBranch::update(glm::vec4 _startPos, glm::vec4 _endPos, glm::quat _orientation, glm::vec3 _startDir){
     startPos = _startPos;
     startDirection = _startDir;
     endPos = _endPos;
